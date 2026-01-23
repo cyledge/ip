@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class CYbot {
     private static String myName = "CYbot";
 
@@ -17,8 +19,25 @@ public class CYbot {
         printHorizontalLine();
     }
 
+    private static void echoMsg(Scanner scanner) {
+        while (true) {
+            String userInput = scanner.nextLine();
+            if (userInput.equals("bye")) {
+                break;
+            }
+            printHorizontalLine();
+            String response = userInput;
+            System.out.println(response);
+            printHorizontalLine();
+        }
+    }
+
     public static void main(String[] args) {
     welcomeMsg();
+    Scanner scanner = new Scanner(System.in);
+    echoMsg(scanner);
+
     byeMsg();
+
     }
 }
