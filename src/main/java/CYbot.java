@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CYbot {
     private static String myName = "CYbot";
+    private static ArrayList<String> strList = new ArrayList<String>();
 
     private static void printHorizontalLine() {
         System.out.println("____________________________________________________________");
@@ -19,6 +21,12 @@ public class CYbot {
         printHorizontalLine();
     }
 
+    private static void printList() {
+        for (int i = 1; i <= strList.toArray().length; i++) {
+            System.out.println(i + ". " + strList.get(i-1));
+        }
+    }
+
     private static void echoMsg(Scanner scanner) {
         while (true) {
             String userInput = scanner.nextLine();
@@ -26,8 +34,12 @@ public class CYbot {
                 break;
             }
             printHorizontalLine();
-            String response = userInput;
-            System.out.println(response);
+            if (userInput.equals("list")) {
+                printList();
+                continue;
+            }
+            strList.add(userInput);
+            System.out.println("added: " + userInput);
             printHorizontalLine();
         }
     }
