@@ -11,7 +11,7 @@ public class CYbot {
 
     private static String myName = "CYbot";
     private static ArrayList<Task> taskList = new ArrayList<Task>();
-    private static ArrayList<String> cmdList = new ArrayList<String>(Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event"));
+    private static ArrayList<String> cmdList = new ArrayList<String>(Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
 
     private static void printHorizontalLine() {
         System.out.println("____________________________________________________________");
@@ -65,11 +65,15 @@ public class CYbot {
         System.out.println(taskList.get(index));
     }
 
+    private static void printNumTask() {
+        System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
+    }
+
     private static void addTask(Task task) {
         taskList.add(task);
         System.out.println("Got it. I've added this task:");
         System.out.println(task);
-        System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
+        printNumTask();
     }
 
 
@@ -122,6 +126,13 @@ public class CYbot {
         }
     }
 
+    private static void delete(int index) {
+        Task removedTask = taskList.remove(index);
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(removedTask);
+        printNumTask();
+    }
+
     private static void callCommand(String userInput) {
         String[] wholeCmd = breakInput(userInput);
         String command = wholeCmd[0];
@@ -143,6 +154,9 @@ public class CYbot {
                 break;
             case "event":
                 event(userInput);
+                break;
+            case "delete":
+                delete(Integer.parseInt(wholeCmd[1]) - 1);
                 break;
 
 
