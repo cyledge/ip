@@ -72,27 +72,54 @@ public class CYbot {
         System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
     }
 
-    private static void todo(String name) {
-        Task newTask = new Todo(name);
-        addTask(newTask);
+
+
+    private static void todo(String command) {
+        try {
+            if (command.length() < 5) {
+                throw new IllegalArgumentException("No todo task is given.");
+            }
+            String name = command.substring(5);
+            Task newTask = new Todo(name);
+            addTask(newTask);
+        } catch (StringIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println("What is your todo task?");
+        }
     }
 
     private static void deadline(String command) {
-        int byIndex = command.indexOf(" /by ");
-        String name = command.substring(0, byIndex);
-        String by = command.substring(byIndex + 5);
-        Task newTask = new Deadline(name, by);
-        addTask(newTask);
+        try {
+            if (command.length() < 9) {
+                throw new IllegalArgumentException("No \"deadline\" task is given.");
+            }
+            int byIndex = command.indexOf(" /by ");
+            String name = command.substring(9, byIndex);
+            String by = command.substring(byIndex + 5);
+            Task newTask = new Deadline(name, by);
+            addTask(newTask);
+        } catch (StringIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println("What is your deadline task?");
+            System.out.println("Format: deadline [task name] /by [date]");
+        }
     }
 
     private static void event(String command) {
-        int fromIndex = command.indexOf(" /from ");
-        int toIndex = command.indexOf(" /to ");
-        String name = command.substring(0, fromIndex);
-        String from = command.substring(fromIndex + 7, toIndex);
-        String to = command.substring(toIndex + 5);
-        Task newTask = new Event(name, from, to);
-        addTask(newTask);
+        try {
+            if (command.length() < 9) {
+                throw new IllegalArgumentException("No \"deadline\" task is given.");
+            }
+            int fromIndex = command.indexOf(" /from ");
+            int toIndex = command.indexOf(" /to ");
+            String name = command.substring(6, fromIndex);
+            String from = command.substring(fromIndex + 7, toIndex);
+            String to = command.substring(toIndex + 5);
+            Task newTask = new Event(name, from, to);
+            addTask(newTask);
+        } catch (StringIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println("What is your event task?");
+            System.out.println("Format: event [task name] /from [date] /to [date]");
+
+        }
     }
 
     private static void callCommand(String userInput) {
@@ -109,13 +136,13 @@ public class CYbot {
                 unmark(Integer.parseInt(wholeCmd[1]) - 1);
                 break;
             case "todo":
-                todo(userInput.substring(5));
+                todo(userInput);
                 break;
             case "deadline":
-                deadline(userInput.substring(9));
+                deadline(userInput);
                 break;
             case "event":
-                event(userInput.substring(6));
+                event(userInput);
                 break;
 
 
@@ -131,10 +158,14 @@ public class CYbot {
             }
             printHorizontalLine();
 
-            if (isCommand(userInput)) {
-                callCommand(userInput);
-            } else {
-                addTask(userInput);
+            try {
+                if (isCommand(userInput)) {
+                    callCommand(userInput);
+                } else {
+                    throw new IllegalArgumentException("wrong commadn!");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Sorry, I dont know what that means");
             }
             printHorizontalLine();
         }
