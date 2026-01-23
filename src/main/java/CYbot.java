@@ -30,6 +30,7 @@ public class CYbot {
     }
 
     private static void printList() {
+        System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= taskList.size(); i++) {
             System.out.println(i + ". " + taskList.get(i-1));
         }
