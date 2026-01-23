@@ -15,6 +15,7 @@ public class Task {
         this.done = false;
     }
 
+    @Override
     public String toString() {
         String box;
         if (done) {
