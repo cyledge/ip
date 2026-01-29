@@ -8,6 +8,10 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public String toFileFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + name + " | " + from + " | " + to;
+    }
+
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)",  super.toString(), from, to);
