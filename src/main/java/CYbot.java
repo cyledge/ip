@@ -11,7 +11,9 @@ public class CYbot {
 
     private static String myName = "CYbot";
     private static ArrayList<Task> taskList = new ArrayList<Task>();
-    private static ArrayList<String> cmdList = new ArrayList<String>(Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
+    private static ArrayList<String> cmdList = new ArrayList<String>(
+            Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
+    private static Storage storage;
 
     private static void printHorizontalLine() {
         System.out.println("____________________________________________________________");
@@ -36,11 +38,6 @@ public class CYbot {
         }
     }
 
-    // overrided (overload)
-    private static void addTask(String task) {
-        taskList.add(new Task(task));
-        System.out.println("added: " + task);
-    }
 
     private static boolean isCommand(String userInput) {
         String[] inputStr = userInput.split("\\s+");
@@ -58,12 +55,14 @@ public class CYbot {
         taskList.get(index).markDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskList.get(index));
+        saveToFile();
     }
 
     private static void unmark(int index) {
         taskList.get(index).unmarkDone();
         System.out.println("Ok, I've marked this task as not done yet:");
         System.out.println(taskList.get(index));
+        saveToFile();
     }
 
     private static void printNumTask() {
@@ -75,6 +74,18 @@ public class CYbot {
         System.out.println("Got it. I've added this task:");
         System.out.println(task);
         printNumTask();
+        saveToFile();
+    }
+
+    /**
+     * Ask Storage to save tasks to file (hard disk)
+     */
+    private static void saveToFile() {
+        try {
+            storage.save(taskList);
+        } catch (MyException e) {
+            System.out.println("Warning: Could not save tasks: " + e.getMessage());
+        }
     }
 
 
@@ -132,6 +143,7 @@ public class CYbot {
         System.out.println("Noted. I've removed this task: ");
         System.out.println(removedTask);
         printNumTask();
+        saveToFile();
     }
 
     private static void callCommand(String userInput) {
@@ -187,11 +199,19 @@ public class CYbot {
     }
 
     public static void main(String[] args) {
-    welcomeMsg();
-    Scanner scanner = new Scanner(System.in);
-    processMsg(scanner);
+        storage = new Storage("./data/cybot.txt");
 
-    byeMsg();
+        try {
+            taskList = storage.load();
+        } catch (MyException e) {
+            System.out.println("Error loading tasks: " + e.getMessage());
+            taskList = new ArrayList<Task>();
+        }
+        welcomeMsg();
+        Scanner scanner = new Scanner(System.in);
+        processMsg(scanner);
+
+        byeMsg();
 
     }
 }
