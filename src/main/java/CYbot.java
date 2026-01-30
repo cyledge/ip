@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,6 +11,7 @@ public class CYbot {
         LIST, MARK, UNMARK, TODO, DEADLINE, EVENT
     }
      */
+
 
     private static String myName = "CYbot";
     private static ArrayList<Task> taskList = new ArrayList<Task>();
@@ -51,6 +55,21 @@ public class CYbot {
         return command.split("\\s+");
     }
 
+    /*
+    private static LocalDateTime parseDateTime(String dateTimeStr) throws IllegalArgumentException {
+        try {
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm");
+            return LocalDateTime.parse(dateTimeStr, formatter);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException(
+                    "Invalid datetime format. Format: YYYY-MM-DD HH:mm\n" +
+                            "Example: 2026-02-18 15:26"
+            );
+        }
+    }
+
+     */
+
     private static void mark(int index) {
         taskList.get(index).markDone();
         System.out.println("Nice! I've marked this task as done:");
@@ -89,6 +108,9 @@ public class CYbot {
     }
 
 
+    private static void printDateFormat() {
+        System.out.println("[date] format: " + Task.fileDateFormatStr());
+    }
 
     private static void todo(String command) {
         try {
@@ -109,13 +131,17 @@ public class CYbot {
                 throw new IllegalArgumentException("No \"deadline\" task is given.");
             }
             int byIndex = command.indexOf(" /by ");
+
             String name = command.substring(9, byIndex);
-            String by = command.substring(byIndex + 5);
-            Task newTask = new Deadline(name, by);
+            String by = command.substring(byIndex + 5).trim();
+
+            LocalDateTime byDateTime = Task.parseFileDateTime(by);
+            Task newTask = new Deadline(name, byDateTime);
             addTask(newTask);
         } catch (StringIndexOutOfBoundsException | IllegalArgumentException e) {
             System.out.println("What is your deadline task?");
             System.out.println("Format: deadline [task name] /by [date]");
+            printDateFormat();
         }
     }
 
@@ -124,16 +150,30 @@ public class CYbot {
             if (command.length() < 9) {
                 throw new IllegalArgumentException("No \"deadline\" task is given.");
             }
+
             int fromIndex = command.indexOf(" /from ");
             int toIndex = command.indexOf(" /to ");
+
             String name = command.substring(6, fromIndex);
-            String from = command.substring(fromIndex + 7, toIndex);
-            String to = command.substring(toIndex + 5);
-            Task newTask = new Event(name, from, to);
+
+            String from = command.substring(fromIndex + 7, toIndex).trim();
+            String to = command.substring(toIndex + 5).trim();
+
+            LocalDateTime fromDateTime = Task.parseFileDateTime(from);
+            LocalDateTime toDateTime = Task.parseFileDateTime(to);
+
+            if (fromDateTime.isAfter(toDateTime)) {
+                throw new IllegalArgumentException("Start time cannot be after End time.");
+            }
+
+            Task newTask = new Event(name, fromDateTime, toDateTime);
             addTask(newTask);
+
         } catch (StringIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println(e);
             System.out.println("What is your event task?");
             System.out.println("Format: event [task name] /from [date] /to [date]");
+            printDateFormat();
 
         }
     }
