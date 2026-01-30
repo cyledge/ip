@@ -14,7 +14,7 @@ public class CYbot {
 
 
     private static String myName = "CYbot";
-    private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static TaskList taskList;
     private static ArrayList<String> cmdList = new ArrayList<String>(
             Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
     private static Storage storage;
@@ -37,9 +37,7 @@ public class CYbot {
 
     private static void printList() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= taskList.size(); i++) {
-            System.out.println(i + ". " + taskList.get(i-1));
-        }
+        taskList.printTaskList();
     }
 
 
@@ -71,17 +69,26 @@ public class CYbot {
      */
 
     private static void mark(int index) {
-        taskList.get(index).markDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.get(index));
-        saveToFile();
+        try {
+            taskList.get(index).markDone();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(taskList.get(index));
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
     }
 
     private static void unmark(int index) {
-        taskList.get(index).unmarkDone();
-        System.out.println("Ok, I've marked this task as not done yet:");
-        System.out.println(taskList.get(index));
-        saveToFile();
+        try {
+            taskList.get(index).unmarkDone();
+            System.out.println("Ok, I've marked this task as not done yet:");
+            System.out.println(taskList.get(index));
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
+
     }
 
     private static void printNumTask() {
@@ -179,11 +186,15 @@ public class CYbot {
     }
 
     private static void delete(int index) {
-        Task removedTask = taskList.remove(index);
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(removedTask);
-        printNumTask();
-        saveToFile();
+        try {
+            Task removedTask = taskList.delete(index);
+            System.out.println("Noted. I've removed this task: ");
+            System.out.println(removedTask);
+            printNumTask();
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
     }
 
     private static void callCommand(String userInput) {
@@ -245,7 +256,7 @@ public class CYbot {
             taskList = storage.load();
         } catch (MyException e) {
             System.out.println("Error loading tasks: " + e.getMessage());
-            taskList = new ArrayList<Task>();
+            taskList = new TaskList();
         }
         welcomeMsg();
         Scanner scanner = new Scanner(System.in);

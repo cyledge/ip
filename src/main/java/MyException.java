@@ -4,7 +4,8 @@ public class MyException extends Exception {
         super(message);
     }
 
-    public MyException(String message, Throwable cause) {
+    public MyException(String message, Throwable cause)
+    {
         super(message, cause);
     }
 }
