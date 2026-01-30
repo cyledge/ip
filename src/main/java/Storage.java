@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -71,13 +72,16 @@ public class Storage {
             if (parts.length < 4) {
                 throw new MyException("Corrupted deadline: " + line);
             }
-            task = new Deadline(taskName, parts[3]);
+            LocalDateTime by = Task.parseFileDateTime((parts[3]));
+            task = new Deadline(taskName, by);
             break;
         case "E":
             if (parts.length < 5) {
                 throw new MyException("Corrupted event: " + line);
             }
-            task = new Event(taskName, parts[3], parts[4]);
+            LocalDateTime from = Task.parseFileDateTime((parts[3]));
+            LocalDateTime to = Task.parseFileDateTime((parts[4]));
+            task = new Event(taskName, from, to);
             break;
         default:
             throw new MyException("Unknown task type: " + line);
