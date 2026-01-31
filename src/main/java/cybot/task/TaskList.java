@@ -50,13 +50,4 @@ public class TaskList {
         return tasks.get(index);
     }
 
-
-    /*
-    public void printTaskList() {
-        for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + ". " + tasks.get(i-1));
-        }
-    }
-
-     */
 }
