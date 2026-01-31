@@ -1,3 +1,11 @@
+package cybot.command;
+
+import cybot.MyException;
+import cybot.task.Task;
+import cybot.task.TaskList;
+import cybot.Storage;
+import cybot.Ui;
+
 public class AddCommand extends Command {
     private Task task;
 

@@ -1,5 +1,7 @@
-public class Todo extends Task{
-    Todo(String name) {
+package cybot.task;
+
+public class Todo extends Task {
+    public Todo(String name) {
         super(name);
     }
 

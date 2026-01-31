@@ -1,3 +1,7 @@
+package cybot.task;
+
+import cybot.MyException;
+
 import java.util.ArrayList;
 
 // index in TaskList is 0 based

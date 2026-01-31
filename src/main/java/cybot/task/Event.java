@@ -1,13 +1,18 @@
+package cybot.task;
+
+import cybot.MyException;
+
+
 import java.time.LocalDateTime;
 
 public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
-    static final String EVENT_FORMAT = "event <name> /from <" + Task.DATE_PATTERN + ">" + "/to <" + Task.DATE_PATTERN + ">";
+    public static final String EVENT_FORMAT = "event <name> /from <" + Task.DATE_PATTERN + ">" + "/to <" + Task.DATE_PATTERN + ">";
 
 
-    Event(String name, LocalDateTime from, LocalDateTime to) {
+    public Event(String name, LocalDateTime from, LocalDateTime to) {
         super(name);
         this.from = from;
         this.to = to;

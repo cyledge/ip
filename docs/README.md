@@ -1,4 +1,4 @@
-# CYbot User Guide
+# cybot User Guide
 
 // Update the title above to match the actual product name
 

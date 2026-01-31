@@ -1,3 +1,5 @@
+package cybot.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +14,7 @@ public abstract class Task {
     protected static final DateTimeFormatter FILE_FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 
-    Task(String name) {
+    public Task(String name) {
         this.name = name;
         this.isDone = false;
     }

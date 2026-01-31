@@ -1,3 +1,9 @@
+package cybot.command;
+
+import cybot.task.TaskList;
+import cybot.Storage;
+import cybot.Ui;
+
 public class ExitCommand extends Command {
 
     public ExitCommand() {

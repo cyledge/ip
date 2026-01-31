@@ -1,11 +1,15 @@
+package cybot.task;
+
+import cybot.MyException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDateTime deadline;
-    static final String DEADLINE_FORMAT = "deadline <name> /by <" + Task.DATE_PATTERN + ">";
+    public static final String DEADLINE_FORMAT = "deadline <name> /by <" + Task.DATE_PATTERN + ">";
 
-    Deadline(String name, LocalDateTime deadlines) {
+    public Deadline(String name, LocalDateTime deadlines) {
         super(name);
         this.deadline = deadlines;
     }
