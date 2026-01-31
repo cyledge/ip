@@ -17,7 +17,7 @@ public class Storage {
      * Loads tasks from file into ArrayList<Task>
      * @return list of tasks
      */
-    public ArrayList<Task> load() throws MyException {
+    public TaskList load() throws MyException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
@@ -29,7 +29,7 @@ public class Storage {
 
         // create file if not exist
         if (!file.exists()) {
-            return tasks;
+            return new TaskList(tasks);
         }
 
         try {
@@ -44,7 +44,7 @@ public class Storage {
             throw new MyException("File not found: " + filePath);
         }
 
-        return tasks;
+        return new TaskList(tasks);
     }
 
     /**
@@ -97,10 +97,11 @@ public class Storage {
     /**
      * Saves task back to file in hard disk
      */
-    public void save(ArrayList<Task> tasks) throws MyException {
+    public void save(TaskList tasks) throws MyException {
         try {
             FileWriter writer = new FileWriter(filePath);
-            for (Task task : tasks) {
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
                 writer.write(task.toFileFormat() + System.lineSeparator());
             }
             writer.close();

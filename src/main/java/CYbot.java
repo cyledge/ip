@@ -13,19 +13,50 @@ public class CYbot {
      */
 
 
-    private static String myName = "CYbot";
-    private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static final String PATH_FILE = "./data/cybot.txt";
     private static ArrayList<String> cmdList = new ArrayList<String>(
             Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
-    private static Storage storage;
+    private Storage storage;
+    private Ui ui;
+    private TaskList tasks;
 
+    public CYbot(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = storage.load();
+        } catch (MyException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.welcomeMsg();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.printHorizontalLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (MyException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.printHorizontalLine();
+            }
+        }
+    }
+
+    /*
     private static void printHorizontalLine() {
         System.out.println("____________________________________________________________");
     }
 
     private static void welcomeMsg() {
         printHorizontalLine();
-        System.out.println("Hello! I'm " + myName);
+        System.out.println("Hello! I'm CYbot.");
         System.out.println("What can I do for you?");
         printHorizontalLine();
     }
@@ -37,12 +68,13 @@ public class CYbot {
 
     private static void printList() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= taskList.size(); i++) {
-            System.out.println(i + ". " + taskList.get(i-1));
-        }
+        taskList.printTaskList();
     }
 
+    */
 
+
+    /*
     private static boolean isCommand(String userInput) {
         String[] inputStr = userInput.split("\\s+");
         if (cmdList.contains(inputStr[0])) {
@@ -54,6 +86,8 @@ public class CYbot {
     private static String[] breakInput(String command) {
         return command.split("\\s+");
     }
+    */
+
 
     /*
     private static LocalDateTime parseDateTime(String dateTimeStr) throws IllegalArgumentException {
@@ -70,18 +104,28 @@ public class CYbot {
 
      */
 
+    /*
     private static void mark(int index) {
-        taskList.get(index).markDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.get(index));
-        saveToFile();
+        try {
+            taskList.get(index).markDone();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(taskList.get(index));
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
     }
 
     private static void unmark(int index) {
-        taskList.get(index).unmarkDone();
-        System.out.println("Ok, I've marked this task as not done yet:");
-        System.out.println(taskList.get(index));
-        saveToFile();
+        try {
+            taskList.get(index).unmarkDone();
+            System.out.println("Ok, I've marked this task as not done yet:");
+            System.out.println(taskList.get(index));
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
+
     }
 
     private static void printNumTask() {
@@ -98,7 +142,7 @@ public class CYbot {
 
     /**
      * Ask Storage to save tasks to file (hard disk)
-     */
+
     private static void saveToFile() {
         try {
             storage.save(taskList);
@@ -112,6 +156,8 @@ public class CYbot {
         System.out.println("[date] format: " + Task.fileDateFormatStr());
     }
 
+    */
+    /*
     private static void todo(String command) {
         try {
             if (command.length() < 5) {
@@ -145,6 +191,7 @@ public class CYbot {
         }
     }
 
+
     private static void event(String command) {
         try {
             if (command.length() < 9) {
@@ -177,13 +224,19 @@ public class CYbot {
 
         }
     }
+    */
 
+    /*
     private static void delete(int index) {
-        Task removedTask = taskList.remove(index);
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(removedTask);
-        printNumTask();
-        saveToFile();
+        try {
+            Task removedTask = taskList.delete(index);
+            System.out.println("Noted. I've removed this task: ");
+            System.out.println(removedTask);
+            printNumTask();
+            saveToFile();
+        } catch (MyException e) {
+            System.out.println("Index invalid: " + e);
+        }
     }
 
     private static void callCommand(String userInput) {
@@ -238,20 +291,11 @@ public class CYbot {
         }
     }
 
+    */
     public static void main(String[] args) {
-        storage = new Storage("./data/cybot.txt");
-
-        try {
-            taskList = storage.load();
-        } catch (MyException e) {
-            System.out.println("Error loading tasks: " + e.getMessage());
-            taskList = new ArrayList<Task>();
-        }
-        welcomeMsg();
-        Scanner scanner = new Scanner(System.in);
-        processMsg(scanner);
-
-        byeMsg();
+        new CYbot(PATH_FILE).run();
 
     }
+
+
 }
