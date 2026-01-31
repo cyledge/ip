@@ -5,8 +5,8 @@ import java.time.format.DateTimeParseException;
 public abstract class Task {
     protected String name;
     protected boolean isDone;
-    private static final String DISPLAY_PATTERN = "dd MMM yyyy, hh:mm a";
-    private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
+    static final String DISPLAY_PATTERN = "dd MMM yyyy, hh:mm a";
+    static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
     protected static final DateTimeFormatter DISPLAY_FORMATTER =
             DateTimeFormatter.ofPattern(DISPLAY_PATTERN);
     protected static final DateTimeFormatter FILE_FORMATTER =

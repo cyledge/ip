@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// index in TaskList is 0 based
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -36,15 +37,22 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    public Task get(int index) throws MyException {
+    public Task tryGet(int index) throws MyException {
         checkIndex(index);
+        return get(index);
+    }
+
+    public Task get(int index) {
         return tasks.get(index);
     }
 
 
+    /*
     public void printTaskList() {
         for (int i = 1; i <= tasks.size(); i++) {
             System.out.println(i + ". " + tasks.get(i-1));
         }
     }
+
+     */
 }

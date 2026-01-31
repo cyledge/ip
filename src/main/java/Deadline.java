@@ -3,10 +3,35 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDateTime deadline;
+    static final String DEADLINE_FORMAT = "deadline <name> /by <" + Task.DATE_PATTERN + ">";
 
     Deadline(String name, LocalDateTime deadlines) {
         super(name);
         this.deadline = deadlines;
+    }
+
+    /**
+     * Factory method to create Deadline from raw input
+     * @param input "<name> /by YYYY-MM-DD HH:mm
+     * @return Deadline obj
+     * @throws  MyException for invalid input
+     */
+    public static Deadline createDeadline(String input) throws MyException {
+        String[] parts = input.split(" /by");
+        if (parts.length < 2) {
+            throw new MyException("Please use: " + DEADLINE_FORMAT);
+        }
+
+        String name = parts[0].trim();
+        String by = parts[1].trim();
+
+        try {
+            LocalDateTime byDateTime = Task.parseFileDateTime(by);
+            return new Deadline(name, byDateTime);
+        } catch (IllegalArgumentException e) {
+            throw new MyException("Please use: " + DEADLINE_FORMAT);
+        }
+
     }
 
 
