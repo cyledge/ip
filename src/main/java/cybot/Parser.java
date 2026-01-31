@@ -1,11 +1,6 @@
 package cybot;
 
-import cybot.command.Command;
-import cybot.command.AddCommand;
-import cybot.command.DeleteCommand;
-import cybot.command.ListCommand;
-import cybot.command.MarkCommand;
-import cybot.command.ExitCommand;
+import cybot.command.*;
 import cybot.task.TaskList;
 import cybot.task.Task;
 import cybot.task.Deadline;
@@ -63,7 +58,7 @@ public class Parser {
 
         case "todo":
             checkInputLen(wholeCmd, 2, "Please name the Todo task.");
-            return new AddCommand(new Todo(wholeCmd[1]));
+            return new AddCommand(new Todo(input.substring(5)));
         case "deadline":
             checkInputLen(wholeCmd, 3, "Please use: " + Deadline.DEADLINE_FORMAT);
             return new AddCommand(Deadline.createDeadline(input.substring(9)));
@@ -75,6 +70,9 @@ public class Parser {
             return new DeleteCommand(Integer.parseInt(wholeCmd[1]));
         case "bye":
             return new ExitCommand();
+        case "find":
+            checkInputLen(wholeCmd, 2, "Please input keyword to find");
+            return new FindCommand(input.substring(5));
 
         default:
             throw new MyException("Invalid expression");

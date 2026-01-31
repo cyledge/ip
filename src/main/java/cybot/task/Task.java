@@ -56,6 +56,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         String box;
