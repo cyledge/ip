@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with name and completion status
+ */
 public abstract class Task {
     protected String name;
     protected boolean isDone;
@@ -14,6 +17,11 @@ public abstract class Task {
     protected static final DateTimeFormatter FILE_FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 
+    /**
+     * Construct a new Task with the given name
+     * initally marked as not done
+     * @param name
+     */
     public Task(String name) {
         this.name = name;
         this.isDone = false;

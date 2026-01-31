@@ -14,6 +14,10 @@ import cybot.task.Todo;
 
 import java.util.Scanner;
 
+/**
+ * Parses user input strings into executable Command obj
+ * handles all command recognition and validation
+ */
 public class Parser {
 
     private static String[] breakInput(String command) {
@@ -36,6 +40,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses input string and returns corresponding Command
+     * Supports commands: todo, deadline, event, list, find, mark, unmark, delete, bye
+     * @param input user input string
+     * @return corresponding Command
+     * @throws MyException for invalid input
+     */
     public static Command parse(String input) throws MyException {
         String[] wholeCmd = breakInput(input);
         String command = wholeCmd[0].toLowerCase();

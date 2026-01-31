@@ -6,6 +6,9 @@ import cybot.task.TaskList;
 
 import java.util.Scanner;
 
+/**
+ * For printing message
+ */
 public class Ui {
     private Scanner scanner;
 
@@ -33,10 +36,17 @@ public class Ui {
         printHorizontalLine();
     }
 
+    /**
+     * show the error msg to the user
+     * @param msg error msg
+     */
     public void showError(String msg) {
         System.out.println(msg);
     }
 
+    /**
+     * Shows that cannot load the file
+     */
     public void showLoadingError() {
         System.out.println("Error loading tasks. Starting with empty list");
     }
@@ -72,6 +82,7 @@ public class Ui {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
     }
+
 
     public void showUnmark(Task task) {
         System.out.println("Ok, I've marked this task as not done yet:");
