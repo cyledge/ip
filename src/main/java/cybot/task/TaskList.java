@@ -50,6 +50,15 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public TaskList findTasks(String keyword) {
+        TaskList matchList = new TaskList();
+        for (Task t : tasks) {
+            if (t.getName().toLowerCase().contains(keyword)) {
+                matchList.add(t);
+            }
+        }
+        return matchList;
+    }
 
     /*
     public void printTaskList() {
