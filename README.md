@@ -17,7 +17,7 @@ Functions:
 5. mark
 6. unmark
 
-<\br>
+</br>
 ## Setting up in Intellij
 
 Prerequisites: JDK 17, update Intellij to the most recent version.
