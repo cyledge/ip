@@ -5,9 +5,9 @@ This is a project template for a greenfield Java project. It's named after the J
 > "This is a good application" - User: cyl
 
 Types of Tasks:
-[ ] todo: ordinary task
-[ ] deadline: task with a deadline
-[ ] event: task with start time and end time
+- [ ] todo: ordinary task
+- [ ] deadline: task with a deadline
+- [ ] event: task with start time and end time
 
 Functions:
 1. list
