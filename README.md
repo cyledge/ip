@@ -2,6 +2,22 @@
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
+> "This is a good application" - User: cyl
+
+Types of Tasks:
+[ ] todo: ordinary task
+[ ] deadline: task with a deadline
+[ ] event: task with start time and end time
+
+Functions:
+1. list
+2. todo
+3. deadline
+4. event
+5. mark
+6. unmark
+
+<\br>
 ## Setting up in Intellij
 
 Prerequisites: JDK 17, update Intellij to the most recent version.
