@@ -18,7 +18,6 @@ public class AddCommand extends Command {
     public String execute(TaskList tasks, Storage storage, Ui ui) throws MyException {
         tasks.add(task);
         storage.save(tasks);
-        ui.showTaskAdded(task, tasks.size());
         StringBuilder sb = new StringBuilder();
         sb.append("Got it. I've added this task:" + "\n");
         sb.append(task + "\n");

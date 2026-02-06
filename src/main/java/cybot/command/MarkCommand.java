@@ -21,14 +21,15 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui)  throws MyException {
         Task task = tasks.tryGet(index - 1);
+        StringBuilder sb = new StringBuilder();
         if (isDone) {
             task.markDone();
-            ui.showMark(task);
+            sb.append("Nice! I've marked this task as done:\n");
         } else {
             task.unmarkDone();
-            ui.showUnmark(task);
         }
         storage.save(tasks);
-        return "";
+        sb.append(task + "\n");
+        return sb.toString();
     }
 }

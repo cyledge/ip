@@ -10,8 +10,8 @@ public class ExitCommand extends Command {
     }
 
     public String execute(TaskList tasks, Storage storage, Ui ui)  {
-        ui.byeMsg();
-        return "";
+        return "Bye. Hope to see you again soon!" + "\n";
+
     }
 
     @Override
