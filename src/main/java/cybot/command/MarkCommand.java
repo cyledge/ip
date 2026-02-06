@@ -19,7 +19,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws MyException {
+    public String execute(TaskList tasks, Storage storage, Ui ui)  throws MyException {
         Task task = tasks.tryGet(index - 1);
         if (isDone) {
             task.markDone();

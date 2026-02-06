@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
     public ExitCommand() {
     }
 
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage, Ui ui)  {
         ui.byeMsg();
         return "";
     }

@@ -20,73 +20,88 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    public void printHorizontalLine() {
-        System.out.println("____________________________________________________________");
+    public String printHorizontalLine() {
+        return "____________________________________________________________\n";
     }
 
-    public void welcomeMsg() {
-        printHorizontalLine();
-        System.out.println("Hello! I'm CYbot.");
-        System.out.println("What can I do for you?");
-        printHorizontalLine();
+    public String welcomeMsg() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(printHorizontalLine());
+        sb.append("Hello! I'm CYbot." + "\n");
+        sb.append("What can I do for you?" + "\n");
+        sb.append(printHorizontalLine());
+        return sb.toString();
     }
 
-    public void byeMsg() {
-        System.out.println("Bye. Hope to see you again soon!");
-        printHorizontalLine();
+    public String byeMsg() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Bye. Hope to see you again soon!" + "\n");
+        sb.append(printHorizontalLine());
+        return sb.toString();
     }
 
     /**
      * show the error msg to the user
      * @param msg error msg
      */
-    public void showError(String msg) {
-        System.out.println(msg);
+    public String showError(String msg) {
+        return msg + "\n";
     }
 
     /**
      * Shows that cannot load the file
      */
-    public void showLoadingError() {
-        System.out.println("Error loading tasks. Starting with empty list");
+    public String showLoadingError() {
+        return "Error loading tasks. Starting with empty list\n";
     }
 
-    public void showTaskAdded(Task task, int size) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        printNumTask(size);
+    // deleted
+    public String showTaskAdded(Task task, int size) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Got it. I've added this task:" + "\n");
+        sb.append(task + "\n");
+        sb.append(printNumTask(size) + "\n");
+        return sb.toString();
     }
 
-    public void showTaskDeleted(Task task, int size) {
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(task);
-        printNumTask(size);
+    // deleted
+    public String showTaskDeleted(Task task, int size) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted. I've removed this task: " + "\n");
+        sb.append(task + "\n");
+        sb.append(printNumTask(size) + "\n");
+        return sb.toString();
     }
 
-    private static void printNumTask(int size) {
-        System.out.println(String.format("Now you have %d tasks in the list.", size));
+    private static String printNumTask(int size) {
+        return String.format("Now you have %d tasks in the list.\n", size);
     }
 
-    public void showTaskList(TaskList tasks) {
+    public String showTaskList(TaskList tasks) {
         if (tasks.size() == 0) {
-            System.out.println("No task in your list!");
-            return;
+            return "No task in your list!\n";
         }
-        System.out.println("Here are the tasks in your list:");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n");
         for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + ". " + tasks.get(i - 1));
+            sb.append(i + ". " + tasks.get(i - 1) + "\n");
         }
+        return sb.toString();
     }
 
-    public void showMark(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
+    public String showMark(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nice! I've marked this task as done:\n");
+        sb.append(task + "\n");
+        return sb.toString();
     }
 
 
-    public void showUnmark(Task task) {
-        System.out.println("Ok, I've marked this task as not done yet:");
-        System.out.println(task);
+    public String showUnmark(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Ok, I've marked this task as not done yet:\n");
+        sb.append(task + "\n");
+        return sb.toString();
     }
 
 
