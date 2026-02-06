@@ -1,4 +1,5 @@
 package cybot;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,12 +23,13 @@ public class MainWindow extends AnchorPane {
 
     private CYbot cybot;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/trump.jpg"));
-    private final Image botImage = new Image(this.getClass().getResourceAsStream("/images/biden.jpg"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/biden.jpg"));
+    private final Image botImage = new Image(this.getClass().getResourceAsStream("/images/trump.jpg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        showWelcomeMsg();
     }
 
 

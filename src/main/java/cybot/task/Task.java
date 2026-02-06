@@ -66,7 +66,7 @@ public abstract class Task {
         if (isDone) {
             box = "[X] ";
         } else {
-            box = "[ ] ";
+            box = "[  ] ";
         }
         return box + name;
     }

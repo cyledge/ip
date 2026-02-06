@@ -35,44 +35,7 @@ public class CYbot extends Application {
     private Ui ui;
     private TaskList tasks;
 
-    /**
-     * @param filePath path to the file where tasks are saved
-     */
-    public CYbot(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = storage.load();
-        } catch (MyException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
-    }
 
-    public CYbot() {
-        this(PATH_FILE);
-    }
-
-    /**
-     * Starts the chatbot
-     */
-    public void run() {
-        ui.welcomeMsg();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printHorizontalLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, storage, ui);
-                isExit = c.isExit();
-            } catch (MyException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.printHorizontalLine();
-            }
-        }
-    }
 
 
 
@@ -89,7 +52,7 @@ public class CYbot extends Application {
             }
 
             // load FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(CYbot.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
 
@@ -123,6 +86,5 @@ public class CYbot extends Application {
      * @param args
      */
     public static void main(String[] args) {
-        launch(args);
     }
 }
