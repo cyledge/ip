@@ -4,7 +4,6 @@ import cybot.MyException;
 import cybot.task.Task;
 import cybot.task.TaskList;
 import cybot.Storage;
-import cybot.Ui;
 
 
 public class AddCommand extends Command {
@@ -15,7 +14,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Storage storage, Ui ui) throws MyException {
+    public String execute(TaskList tasks, Storage storage) throws MyException {
         tasks.add(task);
         storage.save(tasks);
         StringBuilder sb = new StringBuilder();

@@ -3,7 +3,6 @@ package cybot.command;
 
 import cybot.task.TaskList;
 import cybot.Storage;
-import cybot.Ui;
 
 public class ListCommand extends Command {
 
@@ -11,7 +10,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Storage storage, Ui ui)  {
+    public String execute(TaskList tasks, Storage storage)  {
         return showTaskList(tasks);
     }
 }

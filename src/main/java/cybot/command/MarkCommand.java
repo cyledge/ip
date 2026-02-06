@@ -4,7 +4,6 @@ import cybot.MyException;
 import cybot.task.Task;
 import cybot.task.TaskList;
 import cybot.Storage;
-import cybot.Ui;
 
 public class MarkCommand extends Command {
     private int index;
@@ -19,7 +18,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Storage storage, Ui ui)  throws MyException {
+    public String execute(TaskList tasks, Storage storage)  throws MyException {
         Task task = tasks.tryGet(index - 1);
         StringBuilder sb = new StringBuilder();
         if (isDone) {
