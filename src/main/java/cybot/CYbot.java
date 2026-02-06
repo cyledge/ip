@@ -28,11 +28,10 @@ public class CYbot extends Application {
      */
 
 
-    private static final String PATH_FILE = "./data/cybot.txt";
+    private static final String FILE_PATH = "./data/cybot.txt";
     private static ArrayList<String> cmdList = new ArrayList<String>(
             Arrays.asList("list", "mark", "unmark", "todo", "deadline", "event", "delete"));
     private Storage storage;
-    private Ui ui;
     private TaskList tasks;
 
 
@@ -43,7 +42,7 @@ public class CYbot extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            storage = new Storage(PATH_FILE);
+            storage = new Storage(FILE_PATH);
             try {
                 tasks = storage.load();
             } catch (MyException e) {
@@ -75,7 +74,7 @@ public class CYbot extends Application {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            String response = c.execute(tasks, storage, ui);
+            String response = c.execute(tasks, storage);
             return response;
         } catch (MyException e) {
             return "Error: " + e.getMessage();

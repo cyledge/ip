@@ -4,7 +4,6 @@ import cybot.MyException;
 import cybot.task.Task;
 import cybot.task.TaskList;
 import cybot.Storage;
-import cybot.Ui;
 
 public class DeleteCommand extends Command {
 
@@ -19,7 +18,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Storage storage, Ui ui) throws MyException {
+    public String execute(TaskList tasks, Storage storage) throws MyException {
         tasks.tryGet(index - 1);
         Task removedTask = tasks.delete(index - 1);
         storage.save(tasks);
