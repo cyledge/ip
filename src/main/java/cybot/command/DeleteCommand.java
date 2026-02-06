@@ -19,12 +19,16 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws MyException {
+    public String execute(TaskList tasks, Storage storage, Ui ui) throws MyException {
         tasks.tryGet(index - 1);
         Task removedTask = tasks.delete(index - 1);
         storage.save(tasks);
-        ui.showTaskDeleted(removedTask, tasks.size());
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted. I've removed this task: " + "\n");
+        sb.append(removedTask + "\n");
+        sb.append(printNumTask(tasks.size()) + "\n");
+        return sb.toString();
     }
+
 
 }
