@@ -6,6 +6,7 @@ import cybot.task.TaskList;
 import cybot.Storage;
 import cybot.Ui;
 
+
 public class AddCommand extends Command {
     private Task task;
 
@@ -14,11 +15,14 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws MyException {
+    public String execute(TaskList tasks, Storage storage, Ui ui) throws MyException {
         tasks.add(task);
         storage.save(tasks);
-        ui.showTaskAdded(task, tasks.size());
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Got it. I've added this task:" + "\n");
+        sb.append(task + "\n");
+        sb.append(printNumTask(tasks.size()) + "\n");
+        return sb.toString();
     }
 
 
