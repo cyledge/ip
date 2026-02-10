@@ -9,6 +9,8 @@ import cybot.Storage;
 public class FindCommand extends Command {
     private String keyword;
 
+    private static String OUTPUT_STRING = "Here is the find result: \n";
+
     public FindCommand(String keyword) {
         this.keyword = keyword.toLowerCase();
     }
@@ -16,7 +18,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage)  {
         TaskList matchList = tasks.findTasks(keyword);
-        return showTaskList(matchList);
+        return showTaskList(matchList, OUTPUT_STRING);
     }
 
 }
