@@ -56,21 +56,25 @@ public class Storage {
         return new TaskList(tasks);
     }
 
+    private static void checkDataLength(String line, int len) throws MyException {
+        String[] splittedLine = line.split("\\|");
+        if (splittedLine.length < len) {
+            throw new MyException("Corrupted data: " + line);
+        }
+    }
+
     /**
      * Parse a line from file into Task
      * @return Task of that list
      */
     private Task parseLineToTask(String line) throws  MyException {
         // format: "T | 1 | mytask | (D only) | (T only)"
-        String[] parts = line.split(" \\| ");
+        String[] splittedLine = line.split(" \\| ");
+        checkDataLength(line, 3);
 
-        if (parts.length < 3) {
-            throw new MyException("Corrupted data: " + line);
-        }
-
-        String type = parts[0];
-        boolean isDone = parts[1].equals("1");
-        String taskName = parts[2];
+        String type = splittedLine[0];
+        boolean isDone = splittedLine[1].equals("1");
+        String taskName = splittedLine[2];
 
         Task task;
         switch (type) {
@@ -78,18 +82,14 @@ public class Storage {
             task = new Todo(taskName);
             break;
         case "D":
-            if (parts.length < 4) {
-                throw new MyException("Corrupted deadline: " + line);
-            }
-            LocalDateTime by = Task.parseFileDateTime((parts[3]));
+            checkDataLength(line, 4);
+            LocalDateTime by = Task.parseFileDateTime((splittedLine[3]));
             task = new Deadline(taskName, by);
             break;
         case "E":
-            if (parts.length < 5) {
-                throw new MyException("Corrupted event: " + line);
-            }
-            LocalDateTime from = Task.parseFileDateTime((parts[3]));
-            LocalDateTime to = Task.parseFileDateTime((parts[4]));
+            checkDataLength(line, 5);
+            LocalDateTime from = Task.parseFileDateTime((splittedLine[3]));
+            LocalDateTime to = Task.parseFileDateTime((splittedLine[4]));
             task = new Event(taskName, from, to);
             break;
         default:
