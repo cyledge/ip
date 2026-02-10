@@ -72,7 +72,10 @@ public class Storage {
         String[] splittedLine = line.split(" \\| ");
         checkDataLength(line, 3);
 
+
+
         String type = splittedLine[0];
+        assert (splittedLine[1].equals("0") || splittedLine.equals("1")) : "Wrong isDone format";
         boolean isDone = splittedLine[1].equals("1");
         String taskName = splittedLine[2];
 

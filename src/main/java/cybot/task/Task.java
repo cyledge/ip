@@ -29,9 +29,6 @@ public abstract class Task {
 
     public abstract String toFileFormat();
 
-    public static String fileDateFormatStr() {
-        return DATE_PATTERN;
-    }
 
     /**
      * Parse String from file or user input into DateTime in file format
