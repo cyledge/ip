@@ -69,6 +69,7 @@ public class Storage {
         }
 
         String type = parts[0];
+        assert (parts[1].equals("0") || parts.equals("1")) : "Wrong isDone format";
         boolean isDone = parts[1].equals("1");
         String taskName = parts[2];
 
