@@ -55,7 +55,6 @@ public class Parser {
         case "unmark":
             checkInputStyle(wholeCmd, "Please specify a task number to unmark.");
             return new MarkCommand(Integer.parseInt(wholeCmd[1]), false);
-
         case "todo":
             checkInputLen(wholeCmd, 2, "Please name the Todo task.");
             return new AddCommand(new Todo(input.substring(5)));
@@ -73,7 +72,8 @@ public class Parser {
         case "find":
             checkInputLen(wholeCmd, 2, "Please input keyword to find");
             return new FindCommand(input.substring(5));
-
+        case "sort":
+            return new SortCommand();
         default:
             throw new MyException("Invalid expression");
         }

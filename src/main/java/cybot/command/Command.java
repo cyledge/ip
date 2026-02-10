@@ -27,4 +27,8 @@ public abstract class Command {
         }
         return sb.toString();
     }
+
+    protected static String showTaskList(TaskList tasks, String outputString) {
+        return outputString + showTaskList(tasks);
+    }
 }

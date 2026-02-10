@@ -39,8 +39,11 @@ public class Deadline extends Task {
     }
 
 
+    public LocalDateTime getBy() {
+        return this.deadline;
+    }
 
-        @Override
+    @Override
     public String toFileFormat() {
         return "D | " + (isDone ? "1" : "0") + " | " + name + " | " + deadline.format(FILE_FORMATTER);
     }

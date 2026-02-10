@@ -3,6 +3,9 @@ package cybot.task;
 import cybot.MyException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.function.Predicate;
 
 // index in TaskList is 0 based
 public class TaskList {
@@ -58,6 +61,16 @@ public class TaskList {
             }
         }
         return matchList;
+    }
+
+    // return NEW TaskList
+    public TaskList filter(Predicate<Task> condition) {
+        ArrayList<Task> tasksList = new ArrayList<>(this.tasks.stream().filter(condition).toList());
+        return new TaskList(tasksList);
+    }
+
+    public void sort(Comparator<? super Task> comparator) {
+        Collections.sort(tasks, comparator);
     }
 
 
