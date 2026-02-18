@@ -27,6 +27,9 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Return the String that should be written into the file
+     */
     public abstract String toFileFormat();
 
 

@@ -35,10 +35,10 @@ public class CYbot extends Application {
     private TaskList tasks;
 
 
-
-
-
-
+    /**
+     * Start the bot (backend)
+     * @param stage for ui
+     */
     @Override
     public void start(Stage stage) {
         try {
@@ -80,10 +80,5 @@ public class CYbot extends Application {
             return "Error: " + e.getMessage();
         }
     }
-    /**
-     * main entry point
-     * @param args
-     */
-    public static void main(String[] args) {
-    }
+
 }

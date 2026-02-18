@@ -3,6 +3,9 @@ package cybot.command;
 import cybot.task.TaskList;
 import cybot.Storage;
 
+/**
+ * Exit the program
+ */
 public class ExitCommand extends Command {
 
     public String execute(TaskList tasks, Storage storage)  {

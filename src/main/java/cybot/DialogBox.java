@@ -52,10 +52,16 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    /**
+     * output format dialog box for user
+     */
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
     }
 
+    /**
+     * output format dialog box for the Bot
+     */
     public static DialogBox getBotDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();

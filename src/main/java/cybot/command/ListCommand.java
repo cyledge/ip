@@ -4,10 +4,11 @@ package cybot.command;
 import cybot.task.TaskList;
 import cybot.Storage;
 
+/**
+ * Ask the bot to print the tasklist
+ */
 public class ListCommand extends Command {
 
-    public ListCommand() {
-    }
 
     @Override
     public String execute(TaskList tasks, Storage storage)  {

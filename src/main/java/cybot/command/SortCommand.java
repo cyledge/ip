@@ -6,9 +6,14 @@ import cybot.task.TaskList;
 
 import java.util.ArrayList;
 
+
+/**
+ * sort the deadline task based on deadline
+ */
 public class SortCommand extends Command {
 
     private static String OUTPUT_STRING = "Here are the sorted deadline: \n";
+
     @Override
     public String execute(TaskList taskList, Storage storage) {
         TaskList deadlineList = taskList.filter(t -> t instanceof Deadline);

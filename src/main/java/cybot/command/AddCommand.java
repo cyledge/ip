@@ -6,7 +6,9 @@ import cybot.task.TaskList;
 import cybot.Storage;
 
 
-
+/**
+ * Add function: add a Task
+ */
 public class AddCommand extends Command {
     private Task task;
 

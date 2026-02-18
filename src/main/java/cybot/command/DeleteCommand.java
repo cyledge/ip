@@ -5,6 +5,10 @@ import cybot.task.Task;
 import cybot.task.TaskList;
 import cybot.Storage;
 
+
+/**
+ * Delete a task
+ */
 public class DeleteCommand extends Command {
 
     private int index;

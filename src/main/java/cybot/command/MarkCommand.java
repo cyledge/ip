@@ -5,6 +5,9 @@ import cybot.task.Task;
 import cybot.task.TaskList;
 import cybot.Storage;
 
+/**
+ * Mark a task done or undone
+ */
 public class MarkCommand extends Command {
     private int index;
     private boolean isDone;

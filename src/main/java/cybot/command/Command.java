@@ -4,10 +4,24 @@ import cybot.MyException;
 import cybot.task.TaskList;
 import cybot.Storage;
 
+/**
+ * Different command to be input by the user
+ */
 public abstract class Command {
 
+    /**
+     * Execute the cammand, all the logic here
+     * @param tasks a task list
+     * @param storage current storage of the bot
+     * @return a string to be printed
+     * @throws MyException
+     */
     public abstract String execute(TaskList tasks, Storage storage)  throws MyException;
 
+    /**
+     * Determine whether this is an exit command
+     * @return
+     */
     public boolean isExit() {
         return false;
     }
