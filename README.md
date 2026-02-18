@@ -2,22 +2,6 @@
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
-> "This is a good application" - User: cyl
-
-Types of Tasks:
-- [ ] todo: ordinary task
-- [ ] deadline: task with a deadline
-- [ ] event: task with start time and end time
-
-Functions:
-1. list
-2. todo
-3. deadline
-4. event
-5. mark
-6. unmark
-
-
 ## Setting up in Intellij
 
 Prerequisites: JDK 17, update Intellij to the most recent version.
@@ -40,3 +24,10 @@ Prerequisites: JDK 17, update Intellij to the most recent version.
    ```
 
 **Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+
+
+Acknowledgement
+Biden's picture (https://en.wikipedia.org/wiki/Joe_Biden#/media/File:Joe_Biden_presidential_portrait.jpg)
+Trump's picture (https://sco.wikipedia.org/wiki/Donald_Trump#/media/File:January_2025_Official_Presidential_Portrait_of_Donald_J._Trump.jpg)
+reference CS2103 course material for UI development
+DeepSeek and Grok for general OOP design help and coding guidance
