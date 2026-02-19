@@ -29,6 +29,7 @@ public class MarkCommand extends Command {
             sb.append("Nice! I've marked this task as done:\n");
         } else {
             task.unmarkDone();
+            sb.append("Unmarked this task: \n");
         }
         storage.save(tasks);
         sb.append(task + "\n");
