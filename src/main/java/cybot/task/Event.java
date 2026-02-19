@@ -54,7 +54,7 @@ public class Event extends Task {
         String formattedTo = to.format(DISPLAY_FORMATTER);
         String formattedFrom = from.format(DISPLAY_FORMATTER);
 
-        return String.format("[E]%s (from: %s to: %s)",  super.toString(), formattedFrom, formattedTo);
+        return String.format("[E]%s (from: %s, to: %s)",  super.toString(), formattedFrom, formattedTo);
 
     }
 }

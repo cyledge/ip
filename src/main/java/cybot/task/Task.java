@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 public abstract class Task {
     protected String name;
     protected boolean isDone;
-    static final String DISPLAY_PATTERN = "dd MMM yyyy, hh:mm a";
+    static final String DISPLAY_PATTERN = "dd MMM yyyy, hh:mma";
     static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
     protected static final DateTimeFormatter DISPLAY_FORMATTER =
             DateTimeFormatter.ofPattern(DISPLAY_PATTERN);
