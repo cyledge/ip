@@ -45,7 +45,8 @@ Now you have 3 tasks in the list.
 ```
 
 4. `list`: list task list
-* Format: `list`  
+* Format: `list`
+
 ```
 Here are the tasks in your list:
 1. [T][ ] book flight
@@ -55,7 +56,8 @@ Here are the tasks in your list:
 
 5. `find`: find task(s) that contains the keyword
 * Format: `find <keyword>`
-* Example: `find book`  
+* Example: `find book`
+
 ```
 Here is the find result:
 1. [T][ ] book flight
