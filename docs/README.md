@@ -45,7 +45,7 @@ Now you have 3 tasks in the list.
 ```
 
 4. `list`: list task list
-* Format: `list`
+* Format: `list`  
 ```
 Here are the tasks in your list:
 1. [T][ ] book flight
@@ -55,7 +55,7 @@ Here are the tasks in your list:
 
 5. `find`: find task(s) that contains the keyword
 * Format: `find <keyword>`
-* Example: `find book`
+* Example: `find book`  
 ```
 Here is the find result:
 1. [T][ ] book flight
@@ -71,7 +71,7 @@ Nice! I've marked this task as done:
 
 7. `unmark`: unmark the task with given index
 * Format: `unmark <index>`
-* Example: `unmark 1`
+* Example: `unmark 1`  
 ```
 Unmarked this task: 
 [T][ ] book flight
@@ -87,7 +87,8 @@ Now you have 2 tasks in the list.
 ```
 
 9. `sort`: sort the deadline with their date
-* Format: `sort`
+* Format: `sort`  
+
 ```
 Here are the sorted deadline:
 1. [D][ ] apply visa (by: 14 Feb 2026, 11:59pm)
