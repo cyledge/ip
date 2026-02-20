@@ -26,7 +26,7 @@ Now you have 1 tasks in the list.
 ### 2. `deadline`: add Deadline task to your list
 Deadline [D] - a task with a deadline   
 **Format:** `deadline <task name> /by <date>`  
-* `<date>`: YYYY-MM-DD HH:mm  
+    - `<date>`: YYYY-MM-DD HH:mm  
 **Example:** `deadline apply visa /by 2026-02-14 23:59`  
 ```
 Got it. I've added this task:
@@ -35,9 +35,9 @@ Now you have 2 tasks in the list.
 ```
 
 ### 3. `event`: add Event task to your list
-Event [E] - a task with a start time and end time  
-**Format:** `event <task name> /from <date> /to <date>`   <br>
-* `<date>`: YYYY-MM-DD HH:mm <br>
+Event [E] - a task with a start time and end time<br>
+**Format:** `event <task name> /from <date> /to <date>`<br>
+    - `<date>`: YYYY-MM-DD HH:mm  
 **Example:** `event date with Trump /from 2026-02-14 12:00 /to 2026-02-14 13:00`   
 ```
 Got it. I've added this task:
