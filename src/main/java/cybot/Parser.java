@@ -1,13 +1,10 @@
 package cybot;
 
 import cybot.command.*;
-import cybot.task.TaskList;
-import cybot.task.Task;
 import cybot.task.Deadline;
 import cybot.task.Event;
 import cybot.task.Todo;
 
-import java.util.Scanner;
 
 /**
  * Parses user input strings into executable Command obj

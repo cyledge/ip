@@ -2,7 +2,6 @@ package cybot.task;
 
 import cybot.MyException;
 
-
 import java.time.LocalDateTime;
 
 public class Event extends Task {

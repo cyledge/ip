@@ -35,8 +35,11 @@ public class TaskList {
      * @throws MyException
      */
     private void checkIndex(int index) throws MyException {
+        if (tasks.size() == 0) {
+            throw new MyException("You don't have any task now.");
+        }
         if (index < 0 || index >= tasks.size()) {
-            throw new MyException(String.format("Task# %d > tasks (%d) you have", (index + 1), tasks.size()));
+            throw new MyException(String.format("Task #%d is out of range. \nPlease input valid index: <= %d", (index + 1), tasks.size()));
         }
     }
 

@@ -64,8 +64,23 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (input.equals("bye")) {
-            javafx.application.Platform.exit();
+            handleExit();
         }
+    }
+
+    private void handleExit() {
+        // Ensure all UI updates are processed
+        dialogContainer.layout();
+
+        // Schedule exit after current events are processed
+        javafx.application.Platform.runLater(() -> {
+            try {
+                Thread.sleep(500); // 500ms delay
+            } catch (InterruptedException e) {
+            } finally {
+                javafx.application.Platform.exit();
+            }
+        });
     }
 }
 
